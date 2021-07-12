@@ -18,6 +18,7 @@ const pugLoaderOptions = {
 
 const BASE_HREF = process.env.BASE_HREF || '/calendar/';
 const assetsFolder = 'assets/';
+
 module.exports = {
   mode: 'development',
   entry: './src/index.js',
@@ -102,7 +103,12 @@ module.exports = {
     historyApiFallback: {
       index: BASE_HREF + 'index.html'
     },
-    port: 9900
+    port: 9900,
+    writeToDisk: filePath => {
+      if (filePath.endsWith('index.html')) {
+        return (filePath);
+      }
+    }
   },
   module: {
     rules: [
